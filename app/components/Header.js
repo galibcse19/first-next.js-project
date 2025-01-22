@@ -7,6 +7,12 @@ export default async function Header() {
 const {getUser} = getKindeServerSession();
 const user = await getUser();
 
+const issuerUrl = process.env.KINDE_ISSUER_URL;
+
+  if (!issuerUrl) {
+    throw new Error("The environment variable 'KINDE_ISSUER_URL' is required.");
+  }
+
 
   return (
     <header className="flex justify-between items-center p-4 bg-gray-100 shadow-md lg:px-10">
